@@ -1,0 +1,188 @@
+<script>
+const mainStore = (state = {}, actions) =>{
+   
+  if(actions.type === 'UPDATE_ONOPEN'){
+  var nameList = state.nameList;
+  var newState = actions.value
+  newState.nameList = nameList;
+  return Object.assign({}, newState)  
+  } 
+   
+   
+  if(actions.type === 'UPDATE_STUDENT'){
+    let newStudent = {}
+    let center = actions.value.center;
+    let id = center+ "_STUDENT_" + moment()
+    let columns = state.columns;
+    if(columns){
+    columns.left.unshift(id);
+    } else {
+    console.log('missing columns')
+    columns = {"columns":{left : []}};
+    columns.columns.left = [];
+    columns.columns.left.unshift(id);
+    columns.columns.right = [];
+    }
+    
+    let centerName = { "center": center};
+    let dateText = 'date' + moment().format('YYYY-MM-DD')
+    let date = {"date":dateText }
+    newStudent[id] = {'name': actions.value.name, 'code':actions.value.code, 'center': actions.value.center};
+    return Object.assign({}, state, newStudent, columns, centerName, date )
+  }
+  if(actions.type === 'REMOVE_STUDENT'){
+    let removeStudent = actions.value;
+    let copy = Object.assign({}, state) // assuming you use Object.assign() polyfill!
+    delete copy[removeStudent] // shallowly mutating a shallow copy is fine    
+    if(copy.columns) {
+    copy.columns.left = copy.columns.left.filter(item => item !== removeStudent);
+    copy.columns.right = copy.columns.right.filter( item => item !== removeStudent);
+    }
+    return copy
+  }
+  
+  if(actions.type === 'UPDATE_TESTER'){  
+    let id = actions.value.id
+    let tester = actions.value.tester
+    let copy = Object.assign({}, state)
+    copy[id].tester = tester
+    return copy// Object.assign({}, state, )
+  }
+  if(actions.type === 'ADD_NAME_LIST'){
+    var contactData = {};
+    contactData.nameList = {};
+    contactData.nameList.emails = actions.value[0];
+    contactData.nameList.names = actions.value[1]  
+    contactData.nameList.emails[0] = "nguyenminh03@ilamail.edu.vn";
+    contactData.nameList.names[0] = "Tester 1";  
+    contactData.nameList.emails[1] = "thaonguyen03@ilavietnam.edu.vn";
+    contactData.nameList.names[1] = "Tester 2";
+    return Object.assign({}, state, contactData )
+  }
+  if(actions.type === 'ADD_SORTABLE_POSITIONS'){
+      var sortable = {};
+      sortable.columns = {};
+      sortable.columns.left = actions.value[0];
+      sortable.columns.right = actions.value[1];   
+      return Object.assign({}, state, sortable )
+  }
+  else {
+    return state
+  }
+}
+
+
+
+const updateCards = Redux.createStore(mainStore);
+
+
+updateCards.subscribe(() => {
+  // $('#first-column').empty();
+  $('#add').empty();
+  $('#testing').empty();
+  $('#testing').append('<div id="add-testing"></div>')
+  $('#add').append('<div id="add-add"></div>')
+  $('#name').val('');
+  $('#code').val('');
+
+  let students = updateCards.getState();  
+  let list = students.nameList;
+
+  preRender(students, list)
+});
+
+const preRender = (students, list) =>{
+   console.log(students)
+   if(students.columns === undefined){
+    for (var i in students){
+      if(i !== 'nameList' && i !== 'columns' && i !=='center' && i !=='date' ){
+      renderStudents(students[i], i, list)
+      }
+   };  
+   } else {
+     var right = students.columns.right;
+     var left = students.columns.left;
+     if(left) {
+     left = left.filter( item => item !== "add-add");
+     } else {
+       left = [];
+     }
+     if (right) {
+       right = right.filter( item => item !== "add-testing");
+     } else {
+       right = [];
+     }
+     
+     
+     left.reverse().forEach(function(cardId){
+       renderStudents(students[cardId], cardId, list, 'left')
+     })
+     right.reverse().forEach(function(cardId){
+       renderStudents(students[cardId], cardId, list, 'right')
+     })
+
+
+  }
+  $(".search").selectize({create: true});  
+  let data = updateCards.getState()
+  let goTest = [];
+  let dontGoTest = []
+  if(data.columns){
+   for (var i in data.columns){
+     data.columns[i].forEach((item)=>{
+      if (i === 'right') {
+        if (data[item]) goTest.push(data[item])
+      }
+      if (i === 'left') {
+        if (data[item]) dontGoTest.push(data[item])
+      }
+     })
+   }
+   let dataToSheet = {};
+   dataToSheet.goTest = goTest;
+   dataToSheet.dontGoTest = dontGoTest;
+   dataToSheet.center = data.center;
+   dataToSheet.date = data.date.replace('data','');
+   google.script.run.withSuccessHandler(message).withFailureHandler(message).sendDataToSheet(dataToSheet)
+   } 
+  if (data.columns) google.script.run.withSuccessHandler(message).withFailureHandler(message).sendDataToFirebase(data)
+}
+
+const message = (e) =>{
+  console.log('Response from Google Sheet Calls')
+  console.log(e)
+}
+
+const storeStudent = (e) => ({type:'UPDATE_STUDENT',value:e})
+const removeStudent = (e) => ({type:'REMOVE_STUDENT',value:e})
+const storeTester = (e) => ({type:'UPDATE_TESTER',value:e})
+const storeNameList = (e) => ({type:'ADD_NAME_LIST',value:e})
+const storeSortablePositions = (e) => ({type:'ADD_SORTABLE_POSITIONS',value:e})
+const updateOnOpen = (e) => ({type:'UPDATE_ONOPEN',value:e})
+
+function addStudent(){
+            let data = {};
+			data.name = $('#name').val();
+			data.code = $('#code').val();       
+			data.center = $('#center-picker option:selected' ).text();       
+			if (data.name === "" || data.code === ""){
+              let message = `Hold up! You need a name and a code`;
+              swal( 'Oops...',message,'error')
+			  return
+			}           
+    updateCards.dispatch(storeStudent(data));     
+  };
+  
+ 
+$(document).on('change','.search',(e) => {
+  let id = $(e.currentTarget).parent().parent().parent().parent().parent().attr('id');
+  let data = {};
+  data.id = id;
+  data.tester = $('#'+id).find(":selected").val();
+  updateCards.dispatch(storeTester(data));   
+})
+
+
+ // updateCards.dispatch(storeStudent(data)); 
+var addStudents = function(){}
+</script>

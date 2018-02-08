@@ -1,0 +1,70 @@
+<script>
+
+
+$(".column").sortable({
+  	connectWith: ".column",
+  	handle: ".portlet",    
+  	cancel: ".portlet-toggle, select",
+    disabled: false,
+  	start: function(event, ui) {    
+      var tester = $(ui.item).find('input')[0].placeholder;   
+      if(tester === '') {
+        //ui.item.disabled = false;
+        alert('Please include a tester')
+//        var message = `Please include a tester!`;
+//        swal( 'Oops...',message,'error')
+//     //   $( ".column" ).sortable('cancel',{ revert: true});
+        return
+      }
+      ui.item.addClass('tilt');
+      tilt_direction(ui.item); 
+       
+  	},
+  	stop: function(event, ui) {   
+      ui.item.removeClass("tilt");
+      $("html").unbind('mousemove', ui.item.data("move_handler"));
+      ui.item.removeData("move_handler");
+      var item = ui.item
+      var testing = false;
+      if(item.parent().attr('id') !== 'add'){
+      testing = true;
+      }      
+      dropCard(testing)
+  	}
+  });
+  
+function dropCard(testing){
+//  if(testing){
+  // add disable here
+  var left = [];
+  var right = [];
+  
+  $('#add').each(function(){
+    left.push($(this).sortable('toArray'));
+  })
+  $('#testing').each(function(){
+    right.push($(this).sortable('toArray'));
+  })
+  var result = [left[0], right[0]]    
+  updateCards.dispatch(storeSortablePositions(result)); 
+}  
+  
+function tilt_direction(item) {
+  var left_pos = item.position().left,
+  move_handler = function(e) {
+    if (e.pageX >= left_pos) {
+      item.addClass("right");
+      item.removeClass("left");
+    } else {
+      item.addClass("left");
+      item.removeClass("right");
+    }
+    left_pos = e.pageX;
+  };
+  $("html").bind("mousemove", move_handler);
+  item.data("move_handler", move_handler);
+}
+  
+</script>
+
+

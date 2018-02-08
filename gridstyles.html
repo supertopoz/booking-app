@@ -1,0 +1,247 @@
+<style>
+:root {
+    "--right--background": #FCECAE;
+    "--font-size-header": 14px;
+    "--font-size-title": 14px;
+    "--font-size-text": 13px;
+}
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.wrapper {
+    margin: 0 auto;
+    font: 1.2em Helvetica, arial, sans-serif;
+}
+.wrapper > * {
+
+    background-color: white;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-head {
+    background: #f3f3f4;
+    color: #666c6e;
+    min-height : 60px;
+    padding : 20px 20px 0;
+}
+.main-head h2{
+    font-size: 14px;
+    font-weight: 900;
+}
+.main-nav {
+    background: #fff;
+    color: #fff;
+    padding: 15px;
+    min-height: 60px;
+    margin-top: -8px;
+    border-top: 1px solid #e7eaec;
+}
+.left-drop {
+    min-height: 220px;
+    background: white;
+}
+.right-drop {
+    min-height: 220px;
+    background: white;
+}
+.main-footer {
+    font-size: 12px;
+    color: #676a6c;
+    padding: 10px;
+    background: white;
+}
+.wrapper {
+
+}
+.drop-header {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #1ab394;
+    border-color: #e7eaec;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 4px 0px 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 13px 0px 5px 10px;
+    min-height: 48px;
+}
+.drop-header h5{
+   color:#fff;
+   display: inline-block;
+   font-size: 14px;
+   margin: 0;
+   padding: 0;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+   font-weight : bold;
+}
+@media screen and (min-width: 768px) {
+
+}
+@media screen and (min-width: 700px) {
+    .listing-left {
+        list-style: none;
+        margin: 10px;
+    }
+}
+@media screen and (max-width: 699px) {
+    .listing-left {
+        list-style: none;
+        margin: 10px;
+    }
+}
+
+.listing-right {
+    margin: 10px;
+}
+.card {
+    border-radius: 0px;
+    border: 0px solid;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 10px;
+    /*
+    -webkit-box-shadow: 0px 8px 18px -6px rgba(0, 0, 0, 0.67);
+    box-shadow: 0px 8px 18px -6px rgba(0, 0, 0, 0.67);
+    */
+    box-shadow: 2px 2px 2px #ccc;
+}
+.portlet-header {
+    background-color: #1ab394;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+}
+.cta {
+    margin-top: auto;
+    border-top: 1px solid grey;
+    padding: 10px;
+    text-align: center;
+}
+#data-input {
+    display: none;
+}
+#data-input .input-wrapt{
+    max-width : 768px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.leveTapp section{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin : 25px 15px 10px;
+    background : transparent;
+}
+.leveTapp section > div {
+   width : 49% ;
+}
+.leveTapp section > div .inner{
+   background-color: #ffffff;
+   color: inherit;
+   padding: 15px 20px 5px 20px;
+   margin : 0;
+   border-color: #e7eaec;
+   -o-border-image: none;
+   border-image: none;
+   border-style: solid solid none;
+   border-width: 1px 0px;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+   justify-content: space-between;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+}
+.leveTapp section > div .inner .selectize-input>input{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.leveTapp section .left-drop .inner > div{
+    width : 48%;
+}
+.leveTapp section .right-drop .inner > div{
+    width : 100%;
+}
+#add-testing{
+    display : none;
+}
+.ui-sortable-placeholder{
+    border: 1px dashed #cecece !important;
+    visibility: visible !important;
+    background: #e7eaec;
+}
+@media screen and (max-width: 992px) {
+   .leveTapp section .left-drop .inner > div{
+      width : 100%;
+   }
+}
+@media screen and (max-width: 768px) {
+   .leveTapp section > div{
+      width : 100%;
+   }
+   .leveTapp section > div.right-drop{
+      margin-top : 1em;
+   }
+   .leveTapp section .left-drop .inner > div{
+      width : 48%;
+   }
+}
+@media screen and (max-width: 590px) {
+   .leveTapp section .left-drop .inner > div{
+      width : 100%;
+   }
+}
+@media screen and (max-width: 480px) {
+   #txtCentre,
+   #name, 
+   #code,
+   #add-student{
+      width : 100%;
+      margin-bottom :  5px;
+   }
+   .input-wrapt{
+       padding: 10px 10px 5px;
+       background: rgba(26,179,148,0.2);
+   }
+   #add-student{
+       margin-top : 10px;
+   }
+}
+</style>
+
+
+
+
+

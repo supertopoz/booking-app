@@ -1,0 +1,21 @@
+<script>
+
+$(document).on('click','.trash',(e)=>{
+  var id = e.target.id.replace('trash','')
+  var studentId = $(e.target).parent().parent().parent().find('.student-code').attr('id').replace('studentCode','');
+  console.log(studentId);
+  google.script.run.withSuccessHandler(deletedStudent).withFailureHandler(message).deleted(studentId);
+   updateCards.dispatch(removeStudent(id)); 
+})
+
+
+function deletedStudent(e){
+  swal(
+  'Success!',
+  'A student was deleted!',
+  'success'
+  )
+} 
+
+</script>
+

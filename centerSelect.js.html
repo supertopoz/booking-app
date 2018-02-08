@@ -1,0 +1,47 @@
+<script>
+
+let center = '';
+
+$(document).ready(() => {
+  	$('#today').text(moment().format('YYYY-MM-DD'));
+  	InitCentreSelect();
+  	$('#txtCentre').val('');
+  	$("#txtCentre").change(() => {
+  	$('#center-picker').hide();
+    $('#data-input').show(1000);
+   
+   var today = moment().format('YYYY-MM-DD')
+   center = $('#center-picker option:selected').text();
+    $("#center-name").text(center).show(1000)
+    
+   google.script.run.withSuccessHandler(updateOnOpenWithData).withFailureHandler(message).getCenterData(center, today) 
+  	});
+  });
+  
+  // Initialize Firebase
+$('#center-picker').on('change', ()=>{
+    firebase.initializeApp(config);
+    var data = firebase.database();
+    center = $('#center-picker option:selected').text();
+    var date = moment().format('YYYY-MM-DD');
+    var starCountRef = firebase.database().ref(center + '/date' + date + '/');
+    starCountRef.on('value', function(data) {
+    var e = data.val();
+    updateOnOpenWithData(e)
+  });
+})         
+  
+const updateOnOpenWithData = (e) => {
+   updateCards.dispatch(updateOnOpen(e)); 
+}  
+  
+const InitCentreSelect = () => {
+    var data = '<option value="">Select a center</option>';
+    $.each(listCentre, function(index, value) {
+      data += '<option value="' + value + '">' + value + '</option>';
+    });
+    $('select[name="Centre"]').html(data);
+  }
+
+</script>
+

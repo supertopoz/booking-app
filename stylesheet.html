@@ -1,0 +1,259 @@
+<style>
+
+:root {
+    "--right--background": #FCECAE;
+    "--font-size-header": 14px;
+    "--font-size-title": 14px;
+    "--font-size-text": 13px;
+}
+body {
+    background: #2f4050;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.examples {
+    color: #999c9e;
+    font-size: 12px;
+    /*background: rgba(26,179,148,0.2);*/
+    padding : 5px 10px;
+    border : 1px dashed #1ab394;
+}
+.examples > p{
+    margin-bottom : 5px;
+}
+.examples a{
+   text-decoration: underline;
+}
+.code-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 5px 10px 2px 0;
+}
+.code {
+    background: #1ab394;    
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    padding : 3px 5px 2px;
+    margin : 0 3px 3px 0;
+    border-radius : 3px;
+}
+.container {
+    font-size: 13px;
+
+}
+#txtCentre,
+.selectize-input,
+#name,
+#code {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #1ab394;
+    border-radius: 1px;
+    color: #666c6e;;
+    display: block;
+    padding: 6px 12px;
+    -webkit-transition: border-color 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+    width: calc(50% - 60px);
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+#add-student {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background : #1ab394;
+    box-shadow: 2px 2px 1px #ccc;
+}
+.selectize-input{
+    width : 100%;
+}
+.search {
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+}
+.selectize-dropdown{
+   min-width : 250px;
+}
+.tilt.right {
+    transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -webkit-transform: rotate(3deg);
+}
+.tilt.left {
+    transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+}
+.trash-tester {
+    color: red;
+    cursor: pointer;
+}
+#center-picker {
+    display: none;
+}
+body {
+    /*min-width: 520px;*/
+    font-family: sans-serif !important;
+    color: #63646D;
+}
+#waiting {
+    background-color: #CEF4CB;
+}
+#done {
+    background-color: #F4CDCB;
+}
+.student-input {
+    background-color: red;
+    background-color: #CBD9F4;
+    margin: 0px;
+    padding: 5px;
+}
+.column-header {
+    text-align: center;
+    background-color: #CBD9F4;
+    padding: 5px;
+}
+.portlet {
+    min-width: 150px;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0em 0em 0.5em;
+}
+.portlet-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -8px;
+}
+.portlet-content {
+    padding: 0.4em;
+    font-size: 15px;
+    border : 1px dashed #1ab394;
+    border-top: none;
+
+}
+.portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+}
+
+.testing {
+    background-color: var(--right--background);
+}
+.students {
+    background-color: #E6E8F7;
+    margin-left: 0px;
+}
+#main-content {
+    max-height: 900px !important;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.hidden-details {
+    display: none;
+}
+#main-container {
+    display: none;
+}
+.trash {
+    float: right;
+    font-size: 20px;
+}
+.info {
+    float: left;
+    font-size: 20px;
+}
+.loading {
+    background-color: #ffffff;
+    background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+    background-size: 20px 20px;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.add-tester {
+    cursor: pointer;
+}
+#add-add {
+    display: none;
+}
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+}
+.custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0px;
+    margin-left: -1px;
+    padding: 0;
+}
+.custom-combobox-input {
+    margin: 0;
+    padding: 2px 2px;
+    border: none !important;
+    background-color: white;
+    border-bottom: 1px solid #CCC !important;
+    width: 100%;
+    box-shadow: none !important;
+}
+.unfocus-input {
+    border: none !important;
+}
+.ui-autocomplete {
+    max-height: 200px;
+    max-width: 60%;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.dropdown.icon {
+    display: none !important;
+}
+.ui.form .field > .selection.dropdown:hover {
+    width: 100%;
+    border-color: white;
+    border-bottom: 2px solid #34E5B0;
+    border-radius: 0px;
+    margin-bottom: 10px;
+}
+.ui.form .field > .selection.dropdown {
+    width: 100%;
+    border-color: white;
+    border-bottom-color: grey: border-radius: 0px;
+    margin-bottom: 10px;
+}
+.text {
+    font-size: 12px;
+    color: #63646D !important;
+}
+
+</style>
+

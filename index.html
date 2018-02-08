@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+	<base target="_top">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> 
+    <script src="https://unpkg.com/sweetalert2@7.0.7/dist/sweetalert2.all.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+      type="text/css" rel="stylesheet" />
+   
+	<title>"Level test booking"</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body class="pace-done leveTapp">
+
+    <div class="wrapper">
+        <header class="main-head">
+            <div>
+                <h2>ILA Daily Placement Test Bookings <span id="center-name"></span></h2>
+                <i class="fa fa-spinner fa-spin" style="font-size:18px;color:red"></i>
+                <span id="delay-message" style="font-size:10px">This your first time using this app today. Please wait while we get your latest contacts.</span>
+            </div>
+        </header>
+        
+        <nav class="main-nav">
+            <div id="center-picker">
+                <select id="txtCentre" name="Centre">
+					<option>Select Center to Start</option>
+				</select>
+            </div>
+            <div id="data-input">
+                <div class="input-wrapt">
+                    <input id="name" placeholder="Student's name..">
+                    <input id="code" placeholder="Student code...">
+                    <button id="add-student">Add Student</button>
+                </div>                    
+                
+                <div class="examples">
+                    <p>Example codes (visible during testing only). Please click on any code to fill input boxes, then click on ADD STUDENT</p> 
+                    <div class="code-list">
+                        <div class="code">N0012865</div>
+                        <div class="code">N0010690</div>
+                        <div class="code">N0009369</div>
+                        <div class="code">N0010608</div>
+                        <div class="code">N0009654</div>
+                        <div class="code">S-016985</div>
+                        <div class="code">N0010335</div>
+                    </div>
+     
+                    <a href="https://docs.google.com/spreadsheets/d/178Aa1kvDutCdmso-ozQe3jXRBQW0WFeib7E56OJ-En8/edit#gid=0" target="_blank">Open Booking data</a>
+                    <a href="https://mapps.hcmue.edu.vn/myilalt/login/my-login.php" target="_blank">Open Level Testing App username: nguyenminh03@ilamail.edu.vn PW: 12345678</a>
+                </div>
+            </div>
+        </nav>
+        
+        <section>
+            <div class="left-drop">
+                <div class="drop-header">
+                    <h5>Students (<span id="today"></span>)</h5>
+                </div>
+                <div class="inner column listing-left" id="add">
+                    <span id="add-add"></span>
+                </div>
+            </div>
+
+            <div class="right-drop">
+                <div class="drop-header">
+                    <h5>Go For Testing</h5>
+                </div>
+                <div class="inner column listing-right" id="testing">
+                    <span id="add-testing"></span>
+                </div>
+            </div>            
+        </section>
+        <footer>
+            <div class="main-footer">
+                Contact IT support with feedback
+            </div>
+        </footer>        
+        
+    </div>
+    <?!=include('clientConfig'); ?>
+	<?!=include('stylesheet'); ?>
+	<?!=include('app.js'); ?>
+	<?!=include('centers'); ?>
+    <?!=include('sortable.js'); ?>
+    <?!=include('centerSelect.js'); ?>
+    <?!=include('getContacts.js'); ?>
+    <?!=include('renderStudents.js'); ?>
+    <?!=include('store.js'); ?>
+    <?!=include('deleteCards.js'); ?>
+    <?!=include('gridstyles'); ?>
+    <?!=include('progressBar.js'); ?>
+</body>
+</html>

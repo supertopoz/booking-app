@@ -1,0 +1,40 @@
+<script>
+
+$(document).ready(function() {
+
+   $('.ui.search.dropdown').dropdown({ fullTextSearch: true });
+	var timestamp = moment();
+	var storage = localStorage.getItem('contactsList')
+	var lastUpdate = localStorage.getItem('contactsTime')
+	var timeDifference = timestamp.diff(lastUpdate, 'days');
+	if (timeDifference !== 0 || storage === undefined) {
+       console.log('Hittin up the google servers to get your mailing list')
+		google.script.run.withSuccessHandler(success).withFailureHandler(failure).getContacts();
+	} else if (storage !== undefined && localStorage.getItem('contactsTime')) {
+		getNameList(function() {
+        let data = JSON.parse(storage)
+        updateCards.dispatch(storeNameList(data));  
+		})
+	} else {
+		alert('something went wrong! contact IT support')
+	}
+})
+var success = function(data) {
+    $('#center-picker').show();
+    $('.fa-spinner').hide();
+    $('#delay-message').hide();
+    var timestamp = moment();
+	localStorage.setItem('contactsTime', timestamp)
+	var contactsList = JSON.stringify(data)
+    e = data
+    updateCards.dispatch(storeNameList(data));  
+	localStorage.setItem('contactsList', contactsList)
+    
+	
+}
+var failure = function(e) {
+	console.log("failed: " + e)
+}
+</script>
+
+

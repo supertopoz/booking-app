@@ -1,0 +1,46 @@
+<script>
+
+const renderStudents = (student = '', id, list, direction) => {
+  	var details = {};
+  	var name = student.name;
+  	var code = student.code;
+    var tester = student.tester;
+    if(!tester) tester = ''
+    var renderPoint = '#add-add';
+    if(direction === 'right') renderPoint = '#add-testing';
+  	$(renderPoint).after(
+    '<div id="' + id + '">' + 
+      '<div class="portlet card">' + 
+        '<div class="portlet-header">' + 
+          '<i class="material-icons trash" id="trash'+id+'">delete</i>'+        
+        '</div>' + 
+    '<div class="portlet-content">' + 
+       '<div class="container">'+  
+          '<div>'+
+              '<b>Student:</b> '+ name +
+            '</div>'+
+            '<b class="student-code" id="studentCode'+ code +'" style="text-align:right">Student code: </b>' +code+
+       '<div class="cta">'+
+         '<b>Type or select a tester</b>'+
+             '<select class="search"  id="'+code+'">'+
+             '<option data-content="First Line<br>Second Line" selected value="">'+tester+'</option>'+
+              generateDropDown(list) +
+             '</select>' +
+      '</div>'+ 
+      '</div>'+
+  '</div>' +
+   '</div>'
+    
+    );
+}  
+
+function generateDropDown(list){  
+  return list.emails.reduce((arc, item, index) => {
+    arc += '<option value="'+list.names[index]+": "+item+'">'+list.names[index] + ": " + item  + '</option>';
+    return arc
+  }, '')
+}
+
+
+</script>
+
