@@ -3,10 +3,6 @@ This form is used to control who goes for a level test.
 
 ![image](https://user-images.githubusercontent.com/13721960/35966270-ad5ad594-0d00-11e8-9335-57df294295ff.png)
 
-
-# The data passes to the this google sheet 
-https://docs.google.com/spreadsheets/d/178Aa1kvDutCdmso-ozQe3jXRBQW0WFeib7E56OJ-En8/edit
-
 # Center data persistance
 The data is linked to a firebase store in the account of jason@ilavietnam.edu.vn
 
@@ -20,7 +16,7 @@ To provide an add-on for ELT to book students into a placement test on the day o
 - ELT open app and wait for their contact list to load
 - ELT add in student's id and name into app 
 - ELT select a level tester 
-- Student's name is added to this [Google sheet](https://docs.google.com/spreadsheets/d/178Aa1kvDutCdmso-ozQe3jXRBQW0WFeib7E56OJ-En8/edit). 
+- Student's name is added to a Google sheet 
 - Data only persists in the sheet until midnight
 - The positioning and of students and for which center is persisted in Firebase
 - ELT can move students in and out of the level test 
